@@ -3,14 +3,11 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
-#: string-1
-msgid "My App — the first mobile-only email account."
-msgstr ""
+msgid "string-1"
+msgstr "My App — the first \"mobile-only\" email account."
 
-#: string-2
-msgid "One app to manage allyour&nbsp;email accounts"
-msgstr ""
+msgid "string-2"
+msgstr "One app to manage allyour&nbsp;email accounts"
 
-#: string-3
-msgid "and nearly every"
-msgstr ""
+msgid "string-3"
+msgstr "and nearly every"

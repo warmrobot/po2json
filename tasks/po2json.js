@@ -45,7 +45,7 @@ module.exports = function ( grunt ) {
 					jsonMessage = {};
 
 				poObject.messages.forEach( function( message ) {
-					jsonMessage[ message.references.join('') ] = jsonLang === options.original ? message.msgid : message.msgstr.join('');
+					jsonMessage[ message.msgid ] = message.msgstr.join('');
 				});
 
 				result[ jsonLang ] = jsonMessage;
