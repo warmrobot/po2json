@@ -1,5 +1,5 @@
 {
-  "name": "grunt-po2json",
+  "name": "grunt-po2json-simple",
   "description": "Convert i18n JSON files to PO format",
   "version": "0.1.1",
   "homepage": "https://github.com/warmrobot/po2json",
