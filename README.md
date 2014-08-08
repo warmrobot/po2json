@@ -24,14 +24,14 @@ In your project's Gruntfile, add a section named `po2json` to the data object pa
 
 ```js
 grunt.initConfig({
-  po2json: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+	po2json: {
+		options: {
+			// Task-specific options go here.
+		},
+		your_target: {
+			// Target-specific file lists and/or options go here.
+		}
+	}
 });
 ```
 
@@ -62,6 +62,12 @@ Default value: `'messages.po'`
 
 Filename of result file
 
+#### options.template
+Type: `Function`
+Default value: `null`
+
+Template source files with a custom function.
+
 ### Usage Examples
 
 #### Default Options
@@ -69,12 +75,12 @@ In this example, the default options are used to convert PO file to JS module.
 
 ```js
 grunt.initConfig({
-  po2json: {
-    options: {},
-    files: {
-      'path/to/result/json': 'path/to/directory-with-po'
-    },
-  },
+	po2json: {
+		options: {},
+		files: {
+			'path/to/result/json': 'path/to/directory-with-po'
+		}
+	}
 });
 ```
 
@@ -83,17 +89,22 @@ In this example, result will be saved in JSON format.
 
 ```js
 grunt.initConfig({
-  po2json: {
-    options: {
-      format: 'json',
-      original: 'ru',
-      path: 'LCCC',
-      filename: 'locale.po'
-    },
-    files: {
-      'path/to/result/json': 'path/to/directory-with-po'
-    },
-  },
+	po2json: {
+		options: {
+			format  : 'json',
+			original: 'ru',
+			path    : 'LCCC',
+			filename: 'locale.po',
+			template: function (data, file) {
+				return 'define(function() {\n' +
+					'\treturn ' + data + ';\n' +
+				'});\n';
+			}
+		},
+		files: {
+			'path/to/result/json': 'path/to/directory-with-po'
+		}
+	}
 });
 ```
 

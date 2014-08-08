@@ -19,10 +19,11 @@ module.exports = function ( grunt ) {
 
 	grunt.registerMultiTask( 'po2json', 'Convert PO files to JSON format', function () {
 		var options = this.options({
-			format: 'module', // format of translated js source file
+			format  : 'module', // format of translated js source file
 			original: 'en', // original lang
-			path: 'LC_MESSAGES', // subfolder for PO file
-			filename: 'messages.po' // PO filename
+			path    : 'LC_MESSAGES', // subfolder for PO file
+			filename: 'messages.po', // PO filename
+			template: null // template source files with a custom function.
 		});
 
 		// Iterate over all specified file groups.
@@ -52,8 +53,18 @@ module.exports = function ( grunt ) {
 				return true;
 			});
 
+			result = JSON.stringify(result, null, '\t' );
+
+			if (options.format === 'module')  {
+				result = 'exports.I18N = ' + result;
+			}
+
+			if (options.template) {
+				result = options.template(result, f.dest);
+			}
+
 			// Save to file
-			grunt.file.write( f.dest, options.format === 'module' ? 'exports.I18N = ' + JSON.stringify( result, null,  '\t' ) : JSON.stringify( result, null,  '\t' ) );
+			grunt.file.write( f.dest, result );
 			grunt.log.writeln( 'File "' + f.dest + '" created.' );
 		});
 	});
