@@ -41,15 +41,18 @@ module.exports = function ( grunt ) {
 				}
 			}).map( function ( filepath ) {
 				// Read file source.
-				var poObject = po.load( filepath ),
-					jsonLang = filepath.substring( 0, filepath.indexOf( options.path + ( options.path.length ? '/' : '' ) + options.filename ) ).substr( -3, 2 ) ,
-					jsonMessage = {};
+				var poObject    = po.load( filepath ),
+					path        = filepath.indexOf( options.path + ( options.path.length ? '/' : '' ) + options.filename ),
+					jsonMessage = {}
+				;
+
+				var locale = filepath.substring(0, path - 1).replace(/.*\//, '');
 
 				poObject.messages.forEach( function( message ) {
 					jsonMessage[ message.msgid ] = message.msgstr.join('');
 				});
 
-				result[ jsonLang ] = jsonMessage;
+				result[ locale || options.original ] = jsonMessage;
 				return true;
 			});
 
