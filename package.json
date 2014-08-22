@@ -1,7 +1,7 @@
 {
   "name": "grunt-po2json-simple",
   "description": "Convert i18n JSON files to PO format",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/warmrobot/po2json",
   "author": {
     "name": "Igor Frolov",
