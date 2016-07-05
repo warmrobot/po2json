@@ -81,7 +81,7 @@ PO.parse = function (contents) {
 	}
 
 	var po = new PO,
-		messages = contents.split('\n\n'),
+		messages = contents.replace(/(?:\r\n)/g, '\n').split('\n\n'),
 		headers = messages.shift();
 
 	var header = parseMessage(headers);
